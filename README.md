@@ -8,7 +8,7 @@
 * 支持自动横屏竖屏
 * 支持本地和网络视频
 
-![](https://raw.githubusercontent.com/misslove1015/DemoPictures/master/MSPlayer1.png)
 ![](https://raw.githubusercontent.com/misslove1015/DemoPictures/master/MSPlayer2.jpg)
 ![](https://raw.githubusercontent.com/misslove1015/DemoPictures/master/MSPlayer3.jpg)
 ![](https://raw.githubusercontent.com/misslove1015/DemoPictures/master/MSPlayer4.jpg)
+![](https://raw.githubusercontent.com/misslove1015/DemoPictures/master/MSPlayer1.png)
