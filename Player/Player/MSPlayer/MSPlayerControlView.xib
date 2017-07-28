@@ -118,6 +118,43 @@
                         <constraint firstItem="pgy-5j-nyY" firstAttribute="top" secondItem="gPz-c0-SRl" secondAttribute="bottom" id="tmE-fI-YJE"/>
                     </constraints>
                 </view>
+                <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u8B-ze-jm1">
+                    <rect key="frame" x="127" y="70" width="140" height="100"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="msplayer_forward.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zth-jx-acR">
+                            <rect key="frame" x="54" y="10" width="32" height="32"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:20 / 02:50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Mr-b3-G9m">
+                            <rect key="frame" x="23" y="50" width="94.5" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IAQ-al-jO9">
+                            <rect key="frame" x="10" y="83" width="120" height="2"/>
+                            <color key="tintColor" red="0.99215686270000003" green="0.8862745098" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </progressView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Zth-jx-acR" firstAttribute="centerX" secondItem="u8B-ze-jm1" secondAttribute="centerX" id="4jY-kR-Idr"/>
+                        <constraint firstAttribute="height" constant="100" id="JOB-9o-gAQ"/>
+                        <constraint firstItem="Zth-jx-acR" firstAttribute="top" secondItem="u8B-ze-jm1" secondAttribute="top" constant="10" id="Ojk-Oq-l4N"/>
+                        <constraint firstAttribute="width" constant="140" id="QUK-OO-1bT"/>
+                        <constraint firstItem="7Mr-b3-G9m" firstAttribute="top" secondItem="Zth-jx-acR" secondAttribute="bottom" constant="8" id="Vf0-59-zh9"/>
+                        <constraint firstAttribute="bottom" secondItem="IAQ-al-jO9" secondAttribute="bottom" constant="15" id="WRp-5E-awf"/>
+                        <constraint firstItem="IAQ-al-jO9" firstAttribute="leading" secondItem="u8B-ze-jm1" secondAttribute="leading" constant="10" id="ZX6-yg-Noz"/>
+                        <constraint firstAttribute="trailing" secondItem="IAQ-al-jO9" secondAttribute="trailing" constant="10" id="qgM-oG-zWE"/>
+                        <constraint firstItem="7Mr-b3-G9m" firstAttribute="centerX" secondItem="u8B-ze-jm1" secondAttribute="centerX" id="xKF-sq-1Jh"/>
+                        <constraint firstItem="IAQ-al-jO9" firstAttribute="centerX" secondItem="u8B-ze-jm1" secondAttribute="centerX" id="zxV-un-wNY"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
                 <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JJt-if-Yue">
                     <rect key="frame" x="147" y="70" width="100" height="100"/>
                     <subviews>
@@ -188,43 +225,6 @@
                         <constraint firstItem="noR-IY-xfo" firstAttribute="top" secondItem="EY9-E6-BQP" secondAttribute="top" constant="5" id="p3b-tm-KPG"/>
                         <constraint firstItem="EAj-TK-wDa" firstAttribute="centerY" secondItem="EY9-E6-BQP" secondAttribute="centerY" id="sKq-PV-mK7"/>
                         <constraint firstItem="EAj-TK-wDa" firstAttribute="centerX" secondItem="EY9-E6-BQP" secondAttribute="centerX" id="wHd-Bc-g8k"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="5"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                </view>
-                <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u8B-ze-jm1">
-                    <rect key="frame" x="127" y="70" width="140" height="100"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="msplayer_forward.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zth-jx-acR">
-                            <rect key="frame" x="54" y="10" width="32" height="32"/>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:20 / 02:50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Mr-b3-G9m">
-                            <rect key="frame" x="23" y="50" width="94.5" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IAQ-al-jO9">
-                            <rect key="frame" x="10" y="83" width="120" height="2"/>
-                            <color key="tintColor" red="0.99215686270000003" green="0.8862745098" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </progressView>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="Zth-jx-acR" firstAttribute="centerX" secondItem="u8B-ze-jm1" secondAttribute="centerX" id="4jY-kR-Idr"/>
-                        <constraint firstAttribute="height" constant="100" id="JOB-9o-gAQ"/>
-                        <constraint firstItem="Zth-jx-acR" firstAttribute="top" secondItem="u8B-ze-jm1" secondAttribute="top" constant="10" id="Ojk-Oq-l4N"/>
-                        <constraint firstAttribute="width" constant="140" id="QUK-OO-1bT"/>
-                        <constraint firstItem="7Mr-b3-G9m" firstAttribute="top" secondItem="Zth-jx-acR" secondAttribute="bottom" constant="8" id="Vf0-59-zh9"/>
-                        <constraint firstAttribute="bottom" secondItem="IAQ-al-jO9" secondAttribute="bottom" constant="15" id="WRp-5E-awf"/>
-                        <constraint firstItem="IAQ-al-jO9" firstAttribute="leading" secondItem="u8B-ze-jm1" secondAttribute="leading" constant="10" id="ZX6-yg-Noz"/>
-                        <constraint firstAttribute="trailing" secondItem="IAQ-al-jO9" secondAttribute="trailing" constant="10" id="qgM-oG-zWE"/>
-                        <constraint firstItem="7Mr-b3-G9m" firstAttribute="centerX" secondItem="u8B-ze-jm1" secondAttribute="centerX" id="xKF-sq-1Jh"/>
-                        <constraint firstItem="IAQ-al-jO9" firstAttribute="centerX" secondItem="u8B-ze-jm1" secondAttribute="centerX" id="zxV-un-wNY"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
