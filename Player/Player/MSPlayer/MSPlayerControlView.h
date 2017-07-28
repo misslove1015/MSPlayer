@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel        *totalTimeLabel;
 @property (weak, nonatomic) IBOutlet UIView         *brightnessView;
 @property (weak, nonatomic) IBOutlet UILabel        *brightnessPercentLabel;
+@property (weak, nonatomic) IBOutlet UIView         *volumeView;
+@property (weak, nonatomic) IBOutlet UILabel        *volumePercentLabel;
 @property (weak, nonatomic) IBOutlet UIView         *forwardView;
 @property (weak, nonatomic) IBOutlet UILabel        *forwardTimeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView    *forwardImageView;

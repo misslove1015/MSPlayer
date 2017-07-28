@@ -24,7 +24,8 @@
     self.player = [[MSPlayer alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width*9/16)];
     [self.view addSubview:self.player];
     self.player.bgView = self.view;
-    self.player.url = [NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"];
+    self.player.url = [NSURL URLWithString:@"http://video.mukr.com/201706/27/15/2017062715530259520ede3f572.mp4"];
+    self.player.videoTitle = @"当总统遇上达人秀";
     [self.player play];
     [self.player playFinished:^{
         NSLog(@"播放完毕");

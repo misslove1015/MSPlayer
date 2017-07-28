@@ -13,7 +13,10 @@ typedef void(^playFinishedBlock)();
 @interface MSPlayer : UIView
 
 // 视频地址
-@property (nonatomic, copy)   NSURL *url;
+@property (nonatomic, strong) NSURL *url;
+
+// 视频标题
+@property (nonatomic, copy) NSString *videoTitle;
 
 // 视频所在的view
 @property (nonatomic, strong) UIView *bgView;

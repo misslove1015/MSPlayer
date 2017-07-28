@@ -7,8 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "MSPlayer.h"
 
 @interface ViewController ()
+
+@property (nonatomic, strong) MSPlayer *player;
 
 @end
 
@@ -18,6 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
+    
 }
 
 - (void)didReceiveMemoryWarning {
