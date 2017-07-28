@@ -5,4 +5,9 @@
 * 支持滑动屏幕左侧调节亮度
 * 支持滑动屏幕右侧调节音量
 * 竖屏下支持横屏
+* 支持自动横屏竖屏
 * 支持本地和网络视频
+![](https://raw.githubusercontent.com/misslove1015/DemoPictures/master/MSPlayer1.png)
+![](https://raw.githubusercontent.com/misslove1015/DemoPictures/master/MSPlayer2.png)
+![](https://raw.githubusercontent.com/misslove1015/DemoPictures/master/MSPlayer3.png)
+![](https://raw.githubusercontent.com/misslove1015/DemoPictures/master/MSPlayer4.png)
