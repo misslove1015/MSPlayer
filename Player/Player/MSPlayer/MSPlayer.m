@@ -29,28 +29,23 @@ CGFloat const MSPlayerHideHintViewDelay = 1;    // 延迟隐藏快进快退/亮�
 @property (nonatomic, strong) AVPlayerLayer       *playerLayer;         // 播放器layer
 @property (nonatomic, strong) MSPlayerControlView *controlView;         // 播放器界面
 @property (nonatomic, strong) MPVolumeView        *volumeView;          // 系统音量提示框
+@property (nonatomic, strong) UIActivityIndicatorView *indicatorView;   // 加载提示
 
 @end
 
 @implementation MSPlayer
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self addPlayerLayer];
-        [self addControlView];
-    }
-    return self;
-}
-
-#pragma mark- 开始播放视频时的操作
+#pragma mark- 开始播放视频
 
 // 播放地址
 - (void)setUrl:(NSURL *)url {
     self.playerItem = [AVPlayerItem playerItemWithURL:url];
-    [self.player replaceCurrentItemWithPlayerItem:self.playerItem];
-    
-    self.totoalSeconds = CMTimeGetSeconds(self.playerItem.asset.duration);
-    self.controlView.totalTimeLabel.text = [self stringFromSecond:self.totoalSeconds];
+    self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
+    self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
+    self.playerLayer.backgroundColor = [UIColor blackColor].CGColor;
+    self.playerLayer.frame = self.bounds;
+    [self.layer addSublayer: self.playerLayer];
+    [self addSubview:self.indicatorView];
     
     [self monitoringPlayback:self.playerItem]; // 监听播放
     [self addNotification]; // 添加通知
@@ -92,9 +87,8 @@ CGFloat const MSPlayerHideHintViewDelay = 1;    // 延迟隐藏快进快退/亮�
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChange:)
                                                  name:UIDeviceOrientationDidChangeNotification
                                                object:nil];
-    
     // 观察播放状态
-    //[self.playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
+    [self.playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 // 播放完毕
@@ -146,7 +140,12 @@ CGFloat const MSPlayerHideHintViewDelay = 1;    // 延迟隐藏快进快退/亮�
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"status"]) {
         if (self.player.currentItem.status == AVPlayerItemStatusReadyToPlay) {
-            // 即将播放
+            // 已经可以播放，添加播放器界面，开始播放
+            [self.indicatorView stopAnimating];
+            [self addControlView];
+            self.totoalSeconds = CMTimeGetSeconds(self.playerItem.asset.duration);
+            self.controlView.totalTimeLabel.text = [self stringFromSecond:self.totoalSeconds];
+            [self play];
         }
     }
 }
@@ -175,6 +174,7 @@ CGFloat const MSPlayerHideHintViewDelay = 1;    // 延迟隐藏快进快退/亮�
     [self.player.currentItem.asset cancelLoading];
     [self.player replaceCurrentItemWithPlayerItem:nil];
     [self.player removeTimeObserver:_playTimeObserver];
+    [self.playerItem removeObserver:self forKeyPath:@"status"];
     self.playTimeObserver = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
@@ -276,7 +276,10 @@ CGFloat const MSPlayerHideHintViewDelay = 1;    // 延迟隐藏快进快退/亮�
         [self.controlView layoutSubviews];
     } completion:^(BOOL finished) {
         [self showControlView];
+        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+
     }];
+    
 }
 
 // 显示播放器控制界面
@@ -295,7 +298,8 @@ CGFloat const MSPlayerHideHintViewDelay = 1;    // 延迟隐藏快进快退/亮�
     [self removeFromSuperview];
     [self.bgView addSubview:self];
     self.controlView.videoControlTopView.hidden = YES;
-    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+
     [UIView animateWithDuration:0.3f animations:^{
         [self setTransform:CGAffineTransformIdentity];
         self.frame = self.originFrame;
@@ -416,7 +420,6 @@ CGFloat const MSPlayerHideHintViewDelay = 1;    // 延迟隐藏快进快退/亮�
         MPMusicPlayerController *mpc = [MPMusicPlayerController applicationMusicPlayer];
         #pragma clang diagnostic ignored"-Wdeprecated-declarations"
         mpc.volume -= value / (10000*3);
-
         
     }
 }
@@ -482,6 +485,17 @@ CGFloat const MSPlayerHideHintViewDelay = 1;    // 延迟隐藏快进快退/亮�
         _volumeView = [[MPVolumeView alloc]initWithFrame:CGRectMake(-1000, -1000, 0, 0)];
     }
     return _volumeView;
+}
+
+// 加载提示
+- (UIActivityIndicatorView *)indicatorView {
+    if (!_indicatorView) {
+        _indicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        _indicatorView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);;
+        [_indicatorView startAnimating];
+        _indicatorView.hidesWhenStopped = YES;
+    }
+    return _indicatorView;
 }
 
 - (void)dealloc {
